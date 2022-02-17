@@ -2,6 +2,7 @@ package br.unitins.almox.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,10 +14,13 @@ public class Usuario implements Serializable{
 	@Id
 	private Integer id;
 
+	@Column(length = 100)
 	private String nome;
 
+	@Column(length = 60)
 	private String login;
-
+	
+	@Column(length = 60)
 	private String senha;
 
 	public Integer getId() {

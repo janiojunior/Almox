@@ -17,10 +17,11 @@ public class TesteJPA {
 		usuario.setId(1);
 		usuario.setNome("Janio Teixeira");
 		usuario.setLogin("janio");
-		usuario.setSenha("123456");
+		usuario.setSenha("12345");
 		
 		em.getTransaction().begin();
-		usuario = em.merge(usuario);
+		Usuario x = em.merge(usuario);
+		em.remove(x);
 		em.getTransaction().commit();
 		
 		

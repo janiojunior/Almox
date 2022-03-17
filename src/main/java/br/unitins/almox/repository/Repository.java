@@ -30,7 +30,7 @@ public class Repository<T extends DefaultEntity> {
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			throw new RepositoryException(,"Problema ao salvar.");
+			throw new RepositoryException("Problema ao salvar.");
 		}
 
 	}

@@ -39,7 +39,14 @@ public abstract class Controller <T extends DefaultEntity> {
 	}
 	
 	public void excluir() {
-		
+		try {
+			getRepository().remove(getEntity());
+			Util.addInfoMessage("Exclusão realizada com sucesso.");
+			limpar();
+		} catch (RepositoryException e) {
+			e.printStackTrace();
+			Util.addErrorMessage(e.getMessage());
+		}
 	}
 
 	

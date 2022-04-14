@@ -4,37 +4,35 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Cadastro de Usuário</title>
+	<title>Cadastro de Estado</title>
 </h:head>
 <h:body>
 	<h:form>
 		<p:growl id="growl" showDetail="true" />
 		<center>
-			<p:panel header="Cadastro de Usuário" style="width:500px;">
+			<p:panel header="Cadastro de Estado" style="width:500px;">
 				<div class="p-grid ui-fluid">
 					<h:panelGrid columns="2">
 						<p:outputLabel value="Nome: " />
 						<h:panelGroup>
 						    <div class="p-col-12 p-md-4">
 				                <div class="ui-inputgroup">
-				                    <p:inputText value="#{usuarioController.entity.nome}" />
+				                    <p:inputText value="#{estadoController.entity.nome}" />
 				                    <p:commandButton icon="pi pi-search" 
 				                    	styleClass="ui-button-warning"
-				                    	actionListener="#{usuarioController.abrirUsuarioListing}">
+				                    	actionListener="#{estadoController.abrirEstadoListing}">
 				                    	<p:ajax 
 				                    		event="dialogReturn" 
-				                    		listener="#{usuarioController.obterUsuarioListing}" 
+				                    		listener="#{estadoController.obterEstadoListing}" 
 				                    		update="@form"/>
 				                    </p:commandButton>
 				                </div>
 				            </div>
 						</h:panelGroup>
 						
-						<p:outputLabel value="Login: " />
-						<p:inputText value="#{usuarioController.entity.login}" />
+						<p:outputLabel value="Sigla: " />
+						<p:inputText value="#{estadoController.entity.sigla}" />
 						
-						<p:outputLabel value="Senha: " />
-						<p:password value="#{usuarioController.entity.senha}" />
 					</h:panelGrid>
 				</div>
 				<f:facet name="footer">
@@ -42,26 +40,26 @@
 						<p:commandButton 
 							value="Incluir" 
 							style="margin-left:10px;margin-right:10px;" 
-							actionListener="#{usuarioController.incluir}"
+							actionListener="#{estadoController.incluir}"
 							update="@form"
 							process="@form"
-							disabled="#{usuarioController.entity.id != null}"
+							disabled="#{estadoController.entity.id != null}"
 							/>
 						<p:commandButton 
 							value="Alterar" 
 							style="margin-left:10px;margin-right:10px;" 
-							actionListener="#{usuarioController.alterar}"
+							actionListener="#{estadoController.alterar}"
 							update="@form"
 							process="@form"
-							disabled="#{usuarioController.entity.id == null}"
+							disabled="#{estadoController.entity.id == null}"
 							/>
 						<p:commandButton 
 							value="Excluir" 
 							style="margin-left:10px;margin-right:10px;" 
-							actionListener="#{usuarioController.excluir}"
+							actionListener="#{estadoController.excluir}"
 							process="@this"
 							update="@form"
-							disabled="#{usuarioController.entity.id == null}">
+							disabled="#{estadoController.entity.id == null}">
 							<p:confirm 
 								header="Confirmação" 
 								message="Deseja realmente excluir?" 
@@ -70,7 +68,7 @@
 						<p:commandButton 
 							value="Limpar" 
 							style="margin-left:10px;margin-right:10px;"
-							actionListener="#{usuarioController.limpar}"
+							actionListener="#{estadoController.limpar}"
 							update="@form"
 							process="@this"/>
 					</center>

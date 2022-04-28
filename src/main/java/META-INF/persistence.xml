@@ -7,6 +7,8 @@
 		<class>br.unitins.almox.model.Cidade</class>
 		<class>br.unitins.almox.model.DefaultEntity</class>
 		<class>br.unitins.almox.model.Estado</class>
+		<class>br.unitins.almox.model.Pessoa</class>
+		<class>br.unitins.almox.model.PessoaFisica</class>
 		<class>br.unitins.almox.model.Telefone</class>
 		<class>br.unitins.almox.model.Usuario</class>
 

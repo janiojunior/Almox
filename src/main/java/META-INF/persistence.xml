@@ -9,6 +9,7 @@
 		<class>br.unitins.almox.model.Estado</class>
 		<class>br.unitins.almox.model.Pessoa</class>
 		<class>br.unitins.almox.model.PessoaFisica</class>
+		<class>br.unitins.almox.model.PessoaJuridica</class>
 		<class>br.unitins.almox.model.Telefone</class>
 		<class>br.unitins.almox.model.Usuario</class>
 

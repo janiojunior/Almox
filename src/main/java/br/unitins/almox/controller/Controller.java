@@ -18,6 +18,7 @@ public abstract class Controller <T extends DefaultEntity> {
 
 	public void incluir() {
 		try {
+			limparRelacionamentosNaoObrigatorios();
 			getRepository().save(getEntity());
 			Util.addInfoMessage("Inclusão realizada com sucesso.");
 			limpar();
@@ -26,9 +27,14 @@ public abstract class Controller <T extends DefaultEntity> {
 			Util.addErrorMessage(e.getMessage());
 		}
 	}
+	
+	protected void limparRelacionamentosNaoObrigatorios() {
+		
+	}
 
 	public void alterar() {
 		try {
+			limparRelacionamentosNaoObrigatorios();
 			getRepository().save(getEntity());
 			Util.addInfoMessage("Alteração realizada com sucesso.");
 			limpar();
@@ -37,6 +43,7 @@ public abstract class Controller <T extends DefaultEntity> {
 			Util.addErrorMessage(e.getMessage());
 		}
 	}
+
 	
 	public void excluir() {
 		try {

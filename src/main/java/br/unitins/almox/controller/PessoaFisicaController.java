@@ -46,6 +46,8 @@ public class PessoaFisicaController extends Controller<PessoaFisica> implements 
 	
 	public void obterPessoaFisicaListing(SelectEvent<PessoaFisica> event) {
 		setEntity(event.getObject());
+		if (getEntity().getEstado() == null)
+			getEntity().setEstado(new Estado());
 	}
 	
 	public void abrirEstadoListing() {

@@ -2,6 +2,7 @@ package br.unitins.almox.controller;
 
 import br.unitins.almox.application.RepositoryException;
 import br.unitins.almox.application.Util;
+import br.unitins.almox.application.VersionException;
 import br.unitins.almox.model.DefaultEntity;
 import br.unitins.almox.repository.Repository;
 import br.unitins.almox.repository.UsuarioRepository;
@@ -25,6 +26,9 @@ public abstract class Controller <T extends DefaultEntity> {
 		} catch (RepositoryException e) {
 			e.printStackTrace();
 			Util.addErrorMessage(e.getMessage());
+		} catch (VersionException e) {
+			e.printStackTrace();
+			Util.addErrorMessage(e.getMessage());
 		}
 	}
 	
@@ -39,6 +43,9 @@ public abstract class Controller <T extends DefaultEntity> {
 			Util.addInfoMessage("Alteração realizada com sucesso.");
 			limpar();
 		} catch (RepositoryException e) {
+			e.printStackTrace();
+			Util.addErrorMessage(e.getMessage());
+		} catch (VersionException e) {
 			e.printStackTrace();
 			Util.addErrorMessage(e.getMessage());
 		}

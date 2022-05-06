@@ -1,8 +1,6 @@
 package br.unitins.almox.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -10,7 +8,8 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 
 import br.unitins.almox.application.RepositoryException;
-import br.unitins.almox.controller.listing.UsuarioListing;
+import br.unitins.almox.controller.listing.PessoaFisicaListing;
+import br.unitins.almox.model.PessoaFisica;
 import br.unitins.almox.model.Usuario;
 import br.unitins.almox.repository.UsuarioRepository;
 
@@ -26,18 +25,31 @@ public class UsuarioController extends Controller<Usuario> implements Serializab
 	
 	@Override
 	public Usuario getEntity() {
-		if (entity == null)
+		if (entity == null) {
 			entity = new Usuario();
+			entity.setPessoaFisica(new PessoaFisica());
+		}
 		return entity;
 	}
 	
-	public void abrirUsuarioListing() {
-		UsuarioListing listing = new UsuarioListing();
+	public void abrirPessoaFisicaListing() {
+		PessoaFisicaListing listing = new PessoaFisicaListing();
 		listing.open();
 	}
 	
-	public void obterUsuarioListing(SelectEvent<Usuario> event) {
-		setEntity(event.getObject());
+	public void obterPessoaFisicaListing(SelectEvent<PessoaFisica> event) {
+		PessoaFisica pf = event.getObject();
+		UsuarioRepository repo = new UsuarioRepository();
+		Usuario usuario = null;
+		try {
+			usuario = repo.findByIdPessoaFisica(pf.getId());
+		} catch (RepositoryException e) {
+			e.printStackTrace();
+		}
+		if (usuario != null) 
+			setEntity(usuario);
+		else
+			getEntity().setPessoaFisica(pf);	
 	}
 	
 

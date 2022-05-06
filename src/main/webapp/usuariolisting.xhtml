@@ -26,7 +26,10 @@
 	        </div>
 			<p:dataTable id="dataTable" value="#{usuarioListing.list}" var="obj">
 				<p:column headerText="Nome">
-					<p:outputLabel value="#{obj.nome}"/>
+					<p:outputLabel value="#{obj.pessoaFisica.nome}"/>
+				</p:column>
+				<p:column headerText="Estado">
+					<p:outputLabel value="#{obj.pessoaFisica.estado.nome}"/>
 				</p:column>
 				<p:column headerText="Login">
 					<p:outputLabel value="#{obj.login}"/>

@@ -1,6 +1,7 @@
 package br.unitins.almox.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -9,7 +10,7 @@ public class PessoaFisica extends Pessoa {
 
 	private String cpf;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_estado")
 	private Estado estado;
 

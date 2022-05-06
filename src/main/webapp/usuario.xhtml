@@ -17,13 +17,13 @@
 						<h:panelGroup>
 						    <div class="p-col-12 p-md-4">
 				                <div class="ui-inputgroup">
-				                    <p:inputText value="#{usuarioController.entity.nome}" />
+				                    <p:inputText value="#{usuarioController.entity.pessoaFisica.nome}" />
 				                    <p:commandButton icon="pi pi-search" 
 				                    	styleClass="ui-button-warning"
-				                    	actionListener="#{usuarioController.abrirUsuarioListing}">
+				                    	actionListener="#{usuarioController.abrirPessoaFisicaListing}">
 				                    	<p:ajax 
 				                    		event="dialogReturn" 
-				                    		listener="#{usuarioController.obterUsuarioListing}" 
+				                    		listener="#{usuarioController.obterPessoaFisicaListing}" 
 				                    		update="@form"/>
 				                    </p:commandButton>
 				                </div>

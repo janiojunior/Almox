@@ -4,18 +4,18 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Usuario extends DefaultEntity implements Serializable{
 
 	private static final long serialVersionUID = -7801673358747779362L;
 
-	@Column(length = 100)
-	private String nome;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(unique = true)
+	private PessoaFisica pessoaFisica;
 
 	@Column(length = 60)
 	private String login;
@@ -23,12 +23,12 @@ public class Usuario extends DefaultEntity implements Serializable{
 	@Column(length = 60)
 	private String senha;
 
-	public String getNome() {
-		return nome;
+	public PessoaFisica getPessoaFisica() {
+		return pessoaFisica;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPessoaFisica(PessoaFisica pessoaFisica) {
+		this.pessoaFisica = pessoaFisica;
 	}
 
 	public String getLogin() {

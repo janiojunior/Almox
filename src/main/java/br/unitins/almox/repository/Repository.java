@@ -19,12 +19,12 @@ public class Repository<T extends DefaultEntity> {
 		setEntityManager(JPAUtil.getEntityManager());
 	}
 
-	public void save(T entity) throws RepositoryException, VersionException{
+	public T save(T entity) throws RepositoryException, VersionException{
 		try {
 			getEntityManager().getTransaction().begin();
-			getEntityManager().merge(entity);
+			entity = getEntityManager().merge(entity);
 			getEntityManager().getTransaction().commit();
-			
+			return entity;
 		} catch (OptimisticLockException e) {
 			// excecao do @version
 			System.out.println("Problema com o controle de concorrencia.");

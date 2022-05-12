@@ -24,7 +24,7 @@ public class ImgUsuarioServlet extends HttpServlet {
         // recebendo o nome da imagem 
         String nome = request.getParameter("nome");
         
-        // /home/janio/images/usuario/
+        // C:\\Users\\janio\\images\\usuario\\
         String diretorio = System.getProperty("user.home") + File.separator + PATH_IMAGES_USUARIO + File.separator;
         
         // montando a imagem com e endereco do servidor

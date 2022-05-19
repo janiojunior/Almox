@@ -8,21 +8,35 @@
 </h:head>
 <h:body>
 	<h:form>
+		<p:growl id="growl" showDetail="true" />
 		<center>
 			<p:panel header="Login" style="width:400px;">
 				<h:panelGrid columns="2">
 					<p:outputLabel value="Usuário: " />
-					<p:inputText />
+					<p:inputText style="width:222px;" value="#{loginController.usuario.login}" />
 					<p:outputLabel value="Senha: " />
-					<p:inputText />
-
+					<p:password
+						 value="#{loginController.usuario.senha}"
+						 toggleMask="true" />
 				</h:panelGrid>
+				<p:commandLink 
+					tabindex="5"
+					style="margin-bottom:0;"
+					styleClass="wdi-red"
+					value="Esqueceu a senha?"
+					action="esqueceusenha.xhtml?faces-redirect=true"/>
 				<f:facet name="footer">
 					<center>
-						<p:commandButton value="Entrar" style="margin-left:10px;margin-right:10px;" />
-						<p:commandButton value="Limpar" style="margin-left:10px;margin-right:10px;"/>
+						<p:commandButton value="Entrar" 
+							actionListener="#{loginController.entrar}"
+							style="margin-left:10px;margin-right:10px;" 
+							update="@form" process="@form" />
+						<p:commandButton value="Limpar" 
+							style="margin-left:10px;margin-right:10px;"/>
 					</center>
+
 				</f:facet>
+
 			</p:panel>
 		</center>
 	</h:form>

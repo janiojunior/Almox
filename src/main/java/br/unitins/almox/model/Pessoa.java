@@ -1,5 +1,6 @@
 package br.unitins.almox.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -9,6 +10,8 @@ import javax.persistence.InheritanceType;
 public abstract class Pessoa extends DefaultEntity {
 
 	private String nome;
+	
+	@Column(unique = true)
 	private String email;
 
 	public String getNome() {

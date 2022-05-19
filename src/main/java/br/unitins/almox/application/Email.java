@@ -1,6 +1,8 @@
 package br.unitins.almox.application;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 import jakarta.mail.Message;
@@ -22,7 +24,6 @@ public class Email {
 	public static void main(String[] args) {
 		Email email = new Email("janiojunior@gmail.com", "Teste 2", "Novo teste");
 		System.out.println(email.enviar());
-		
 	}
 	
 	public Email(String emailDestino, String assunto, String mensagem) {

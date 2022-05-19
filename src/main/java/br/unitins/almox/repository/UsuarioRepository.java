@@ -75,4 +75,28 @@ public class UsuarioRepository extends Repository<Usuario>  {
 		}		
 	}
 
+	public Usuario findByEmail(String email) throws RepositoryException {
+		try { 
+			StringBuffer jpql = new StringBuffer();
+			jpql.append("SELECT ");
+			jpql.append("  u ");
+			jpql.append("FROM ");
+			jpql.append("  Usuario u ");
+			jpql.append("WHERE ");
+			jpql.append("  u.pessoaFisica.email = :email ");
+			
+			Query query = getEntityManager().createQuery(jpql.toString());
+			query.setParameter("email", email);
+			
+			return (Usuario) query.getSingleResult();
+		} catch (NoResultException e) {
+			System.out.println(e.getMessage());
+			return null;
+	
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RepositoryException("Erro ao executar o findByNome.");
+		}		
+	}
+
 }

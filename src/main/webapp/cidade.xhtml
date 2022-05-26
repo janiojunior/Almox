@@ -30,22 +30,19 @@
 				            </div>
 						</h:panelGroup>
 						
-						<p:outputLabel value="Estado: " />
-						<h:panelGroup>
-						    <div class="p-col-12 p-md-4">
-				                <div class="ui-inputgroup">
-				                    <p:inputText value="#{cidadeController.entity.estado.nome}" />
-				                    <p:commandButton icon="pi pi-search" 
-				                    	styleClass="ui-button-warning"
-				                    	actionListener="#{cidadeController.abrirEstadoListing}">
-				                    	<p:ajax 
-				                    		event="dialogReturn" 
-				                    		listener="#{cidadeController.obterEstadoListing}" 
-				                    		update="@form"/>
-				                    </p:commandButton>
-				                </div>
-				            </div>
-						</h:panelGroup>
+						<p:outputLabel value="Estado:" />
+		                <p:autoComplete 
+		                	value="#{cidadeController.entity.estado}"
+		                	var="estado"
+		                	itemLabel="#{estado.nome}"
+		                	itemValue="#{estado}"
+		                    completeMethod="#{cidadeController.completeEstado}" 
+		                    forceSelection="true"
+		                    maxResults="3"
+		                    dropdown="true"
+		                    moreText="... mais resultados"
+		                    scrollHeight="250"/>
+						
 						
 					</h:panelGrid>
 				</div>

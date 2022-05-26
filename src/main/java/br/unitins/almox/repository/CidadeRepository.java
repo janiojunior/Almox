@@ -28,5 +28,30 @@ public class CidadeRepository extends Repository<Cidade>  {
 			throw new RepositoryException("Erro ao executar o findByNome.");
 		}
 	}
+	
+	public List<Object[]> findByNomeSQL(String nome) throws RepositoryException {
+		try { 
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT ");
+			sql.append("  	c.id, ");
+			sql.append("	c.nome, ");
+			sql.append("	e.nome as nomeEstado, ");
+			sql.append("	e.sigla ");
+			sql.append("FROM ");
+			sql.append("  Cidade c, ");
+			sql.append("  Estado e ");
+			sql.append("WHERE ");
+			sql.append("  c.estado_id = e.id ");
+			sql.append("  AND c.nome LIKE :nome ");
+			
+			Query query = getEntityManager().createNativeQuery(sql.toString());
+			query.setParameter("nome", "%" + nome + "%");
+			
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RepositoryException("Erro ao executar o findByNomeSQL.");
+		}
+	}
 
 }

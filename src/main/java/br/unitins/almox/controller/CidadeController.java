@@ -1,17 +1,21 @@
 package br.unitins.almox.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.primefaces.event.SelectEvent;
 
+import br.unitins.almox.application.RepositoryException;
 import br.unitins.almox.controller.listing.CidadeListing;
 import br.unitins.almox.controller.listing.EstadoListing;
 import br.unitins.almox.model.Cidade;
 import br.unitins.almox.model.Estado;
 import br.unitins.almox.repository.CidadeRepository;
+import br.unitins.almox.repository.EstadoRepository;
 
 @Named
 @ViewScoped
@@ -48,6 +52,16 @@ public class CidadeController extends Controller<Cidade> implements Serializable
 	
 	public void obterEstadoListing(SelectEvent<Estado> event) {
 		getEntity().setEstado(event.getObject());
+	}
+	
+	public List<Estado> completeEstado(String filtro) {
+		EstadoRepository repo = new EstadoRepository();
+		try {
+			return repo.findByNome(filtro, 4);
+		} catch (RepositoryException e) {
+			e.printStackTrace();
+			return new ArrayList<Estado>();
+		}
 	}
 	
 

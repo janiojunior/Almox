@@ -1,6 +1,7 @@
 package br.unitins.almox.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -8,7 +9,7 @@ public class Cidade extends DefaultEntity {
 
 	private String nome;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Estado estado;
 
 	public String getNome() {

@@ -9,6 +9,27 @@ import br.unitins.almox.model.Cidade;
 
 public class CidadeRepository extends Repository<Cidade>  {
 	
+	public List<Cidade> findByNomeEstado(String nome) throws RepositoryException {
+		try { 
+			StringBuffer jpql = new StringBuffer();
+			jpql.append("SELECT ");
+			jpql.append("  c ");
+			jpql.append("FROM ");
+			jpql.append("  Cidade c ");
+			jpql.append("WHERE ");
+			jpql.append("  c.estado.nome LIKE :nome ");
+			
+			Query query = getEntityManager().createQuery(jpql.toString());
+			query.setParameter("nome", "%" + nome + "%");
+			
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RepositoryException("Erro ao executar o findByNome.");
+		}
+	}
+	
+	
 	public List<Cidade> findByNome(String nome) throws RepositoryException {
 		try { 
 			StringBuffer jpql = new StringBuffer();

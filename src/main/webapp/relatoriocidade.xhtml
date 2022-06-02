@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Relatório de Cidades</title>
+</h:head>
+	<h:body>
+		<h:form>
+			<p:growl id="growl" globalOnly="false" />
+			<p:panel id="panel">
+				<f:facet name="header">
+					<div align="center">
+						<h1>Relatório de Cidades</h1>
+					</div>
+				</f:facet>
+				<div class="ui-g ui-fluid">
+					<div class="ui-g-12">
+						<div class="card card-w-title">
+							<p:panelGrid columns="1"
+								styleClass="form-group ui-panelgrid-blank" layout="grid">
+								
+								<p:outputLabel value="Filtro por Nome:" />
+								<p:inputText value="#{relatorioCidadeController.filtro}"/>
+								
+							</p:panelGrid>
+
+							
+						</div>
+					</div>
+				</div>
+				<p:toolbar>
+					<f:facet name="left">
+						<p:commandButton value="Buscar Cidades" icon="pi pi-check" process="@form"
+							update="@form" actionListener="#{relatorioCidadeController.pesquisar}" />
+
+						<p:commandButton value="Limpar" 
+							process="@this" update="@form"
+							actionListener="#{relatorioCidadeController.limpar()}">
+							<p:ajax update="@form" resetValues="true" />
+						</p:commandButton>
+
+					</f:facet>
+					<f:facet name="right">
+						<p:commandButton value="Gerar Relatório" ajax="false"
+							disabled="#{relatorioCidadeController.listaCidade.isEmpty()}"
+							actionListener="#{relatorioCidadeController.gerarRelatorio}" 
+							onclick="this.form.target='_blank'">
+						</p:commandButton>
+
+					</f:facet>
+				</p:toolbar>				
+			</p:panel>
+
+		    <p:dataTable id="dtListagem" var="entity" value="#{relatorioCidadeController.listaCidade}">
+			    <p:column headerText="Nome da Cidade">
+			        <h:commandLink value="#{entity.nome}" />
+			    </p:column>
+			 
+			    <p:column headerText="Estado">
+			        <h:outputText value="#{entity.estado.nome}" />
+			    </p:column>
+			 
+			    <p:column headerText="Sigla">
+			        <h:outputText value="#{entity.estado.sigla}" />
+			    </p:column>
+			    
+			</p:dataTable>
+
+		</h:form>
+	    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()"/>
+	
+	    <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+	        <div class="p-text-center">
+	           <p:graphicImage height="150px" width="200px"
+	           		value="./resources/images/loading.gif"/>
+	        </div>
+	    </p:dialog>	
+		
+	   <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+	       <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+	       <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
+	    </p:confirmDialog>
+	</h:body>
+</html>

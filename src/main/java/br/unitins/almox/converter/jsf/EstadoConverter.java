@@ -1,4 +1,4 @@
-package br.unitins.almox.converter;
+package br.unitins.almox.converter.jsf;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

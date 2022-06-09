@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -22,6 +23,8 @@ public class Usuario extends DefaultEntity implements Serializable{
 	
 	@Column(length = 60)
 	private String senha;
+	
+	private Perfil perfil;
 
 	public PessoaFisica getPessoaFisica() {
 		return pessoaFisica;
@@ -46,5 +49,14 @@ public class Usuario extends DefaultEntity implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	public Perfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+	
 
 }

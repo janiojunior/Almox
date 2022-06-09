@@ -1,6 +1,8 @@
 package br.unitins.almox.controller;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
 
 import br.unitins.almox.application.RepositoryException;
@@ -24,6 +26,11 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		if (usuarioLogado != null) {
+			FacesContext.getCurrentInstance()
+			.getExternalContext()
+			.getSessionMap()
+			.put("usuarioLogado", usuarioLogado);
+			
 			Util.redirect("usuario.xhtml");
 		}
 		Util.addErrorMessage("Login ou senha inválido.");
